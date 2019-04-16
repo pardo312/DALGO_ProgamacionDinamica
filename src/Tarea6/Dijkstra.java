@@ -5,11 +5,11 @@ import java.util.Queue;
 
 public class Dijkstra implements Algoritmo{
 
-	//ir de j hasta i
+	
 	public String[] calcularCaminoDeCostoMinimo(int[][] matrix,int nodoInic) {
 
-		ArrayList<Integer> e = new ArrayList<Integer>();
-		Queue<Integer> q = new LinkedList<Integer>();		
+		ArrayList<Integer> e = new ArrayList<Integer>();//marcados
+		ArrayList<Integer> q = new ArrayList<Integer>();//cola
 		q.add(nodoInic);
 		e.add(nodoInic);
 		String[] caminoMasCorto = new String[matrix.length];
@@ -23,38 +23,47 @@ public class Dijkstra implements Algoritmo{
 		}
 		while ( !q.isEmpty())
 		{
-			int i = q.poll();
+			//Encontrar el siguiente a elegir(Costo minimo local)
+			int minimo  = 0;
+			for (int i = 1; i < q.size(); i++){
+				
+				if (distancias[q.get(i)]<distancias[minimo])
+					minimo = i;
+					
+			}
+			int min = q.get(minimo);
+			q.remove(minimo);
 			
-			
+
 			for(int j=0;j<distancias.length;j++) 
 			{
-				if(!(matrix[i][j] == -1))
+				if(!(matrix[min][j] == -1))
 				{
-					if(!(matrix[i][j] == 0 ) && !(e.contains(j)))
+					if(!(matrix[min][j] == 0 ) && !(e.contains(j)))
 					{
 						e.add(j);
 						q.add(j);
 					}
-					
-					
-					if(distancias[i] + matrix[i][j] <  distancias[j])
+
+
+					if(distancias[min] + matrix[min][j] <  distancias[j])
 					{
-						if( distancias[i] == Integer.MAX_VALUE)
+						if( distancias[min] == Integer.MAX_VALUE)
 						{
-							distancias[j] =  matrix[i][j];
-							
-							
+							distancias[j] =  matrix[min][j];
+
+
 						}
 						else
 						{
-							distancias[j] = distancias[i] + matrix[i][j];
-							
+							distancias[j] = distancias[min] + matrix[min][j];
+
 						}
-						
-						caminoMasCorto[j] = caminoMasCorto[i] + "   " + j;
+
+						caminoMasCorto[j] = caminoMasCorto[min] + "   " + j;
 					}					
 				}	
-				
+
 			}
 		}
 		return caminoMasCorto;
