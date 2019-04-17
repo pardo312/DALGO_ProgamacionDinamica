@@ -40,16 +40,21 @@ public class CaminosCostoMinimos {
 		}
 
 		long startTime = System.currentTimeMillis();
-		String[] solucion = algoritmo.calcularCaminoDeCostoMinimo(matrixGrafo, 0);
+		int[][] solucion = algoritmo.calcularCaminoDeCostoMinimo(matrixGrafo);
 		long endTime = System.currentTimeMillis();
 		
 		//Output results
-		System.out.println("Coin\tNumber");
 		
 		for(int c=0;c<size;c++) 
 		{
-			System.out.println("Camino minimo de "+ 0 + " a " + c +" =   "+ solucion[c]+ "\n");
-			
+			for(int f=0;f<size;f++) 
+			{
+					System.out.print(solucion[c][f] + "    ");
+					if(f == size-1)
+					{
+						System.out.println("\n");
+					}
+			}
 		}
 		
 		System.out.println("Total time spent (milliseconds): "+(endTime-startTime));
