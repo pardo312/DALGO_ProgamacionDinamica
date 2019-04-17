@@ -49,7 +49,15 @@ public class CaminosCostoMinimos {
 		{
 			for(int f=0;f<size;f++) 
 			{
+				if(solucion[c][f] == 500000)
+				{
+					System.out.print(-1 + "    ");
+				}
+				else
+				{
 					System.out.print(solucion[c][f] + "    ");
+				}
+				
 					if(f == size-1)
 					{
 						System.out.println("\n");

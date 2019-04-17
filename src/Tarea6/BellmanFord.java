@@ -19,7 +19,7 @@ public class BellmanFord implements Algoritmo {
 			for(int z=0;z<temp.length;z++) 
 			{
 				//Llena temp con infinito
-				temp[z] = Integer.MAX_VALUE;
+				temp[z] = 500000;
 			}
 			temp[nodoInic] = 0;
 			int k = 0;
